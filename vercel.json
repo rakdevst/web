@@ -1,0 +1,11 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/dash", "destination": "/dashboard/", "permanent": false },
+    { "source": "/endorse", "destination": "/endorser/", "permanent": false },
+    { "source": "/endorsers", "destination": "/endorser/", "permanent": false },
+    { "source": "/resource", "destination": "/resources/", "permanent": false },
+    { "source": "/tutorials", "destination": "/tutorial/", "permanent": false }
+  ]
+}

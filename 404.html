@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Alias URL lama -> halaman kanonik. Tujuan selalu folder yang benar-benar ada
+    // (/x/index.html), jadi tidak mungkin terjadi redirect loop. Path yang tidak dikenal
+    // hanya menampilkan kartu 404 di bawah.
+    (function () {
+      try {
+        var ALIAS = {
+          '/dash': '/dashboard/', '/dashboard': '/dashboard/',
+          '/endorse': '/endorser/', '/endorsers': '/endorser/', '/endorser': '/endorser/',
+          '/resource': '/resources/', '/resources': '/resources/',
+          '/tutorials': '/tutorial/', '/tutorial': '/tutorial/',
+          '/admin': '/admin/', '/login': '/login/', '/register': '/register/'
+        };
+        var p = (location.pathname || '/').toLowerCase().replace(/\.html?$/, '').replace(/\/+$/, '') || '/';
+        var seg = '/' + p.split('/')[1];
+        var target = ALIAS[p] || ALIAS[seg];
+        if (p === '/') target = '/dashboard/';
+        if (target && target !== location.pathname) {
+          location.replace(target + location.search + location.hash);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Halaman Tidak Ditemukan</title>
+  <link rel="icon" href="https://i.ibb.co.com/M5hFGd0t/file-00000000f1fc82308aa606d6a1e12263.png">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8fafc;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: #0f172a;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .card {
+      max-width: 440px;
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 25px -5px rgba(15,23,42,0.05);
+    }
+    h1 { font-size: 3.5rem; font-weight: 800; margin: 0 0 0.5rem; color: #0f172a; line-height: 1; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin: 0 0 0.75rem; }
+    p { font-size: 0.875rem; color: #64748b; line-height: 1.5; margin: 0 0 1.5rem; }
+    a {
+      display: inline-block;
+      background: #0f172a;
+      color: #fff;
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    a:hover { background: #1e293b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>404</h1>
+    <h2>Halaman Tidak Ditemukan</h2>
+    <p>Halaman yang Anda cari mungkin telah dipindahkan atau belum tersedia.</p>
+    <a href="/dashboard/">Kembali ke Dashboard</a>
+  </div>
+</body>
+</html>
